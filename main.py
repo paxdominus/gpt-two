@@ -10,10 +10,10 @@ from flask import Flask, redirect, url_for, request
 app = Flask(__name__)
 
 
-@app.route('/getData', methods=['POST', 'GET'])
-def getData():
-	if request.method == 'POST':
-            sequence =  request.json['data']
+@app.route('/<name>', methods=['GET'])
+def getData(name):
+	if request.method == 'GET':
+            sequence =  name
             tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
             model = GPT2LMHeadModel.from_pretrained('gpt2')
 
@@ -23,7 +23,7 @@ def getData():
 
             text = tokenizer.decode(outputs[0], skip_special_tokens=True)
             print("aa"+text)
-            d= {"data": text}
+            d = {"data": text}
             return make_response(jsonify(d), 200)
      
 
