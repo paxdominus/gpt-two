@@ -6,6 +6,7 @@ from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
 from flask import jsonify, make_response
 from flask import Flask, redirect, url_for, request
+
 app = Flask(__name__)
 
 
